@@ -1,0 +1,7 @@
+email:
+  allowedDomains:
+    - gmail.com
+    - outlook.com
+    - yahoo.com
+    - qq.com
+    - 163.com

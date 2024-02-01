@@ -1,10 +1,12 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsEmailAllowed } from './custom-email-validator';
 
 export class CreateUserDto {
   @ApiProperty({
     description: '用户昵称',
     example: 'John Doe',
+    required: true,
   })
   @IsString()
   @IsNotEmpty()
@@ -13,6 +15,7 @@ export class CreateUserDto {
   @ApiProperty({
     description: '密码',
     example: 'abc123456',
+    required: true,
   })
   @IsString()
   @IsNotEmpty()
@@ -24,6 +27,8 @@ export class CreateUserDto {
     required: true,
   })
   @IsString()
+  @IsEmail()
   @IsNotEmpty()
+  @IsEmailAllowed({ message: '邮箱白名单验证不通过' })
   email: string;
 }
